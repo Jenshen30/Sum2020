@@ -32,7 +32,7 @@ VEC VecRotateX(VEC V, DBL Angle)
   VEC r;
   
   Angle *= PI / 180;
-  r.X = V.X * cos(Angle);
+  r.X = V.X;
   r.Y = V.Y * cos(Angle) + V.Z * sin(Angle);
   r.Z = V.Z * cos(Angle) - V.Y * sin(Angle);
 
