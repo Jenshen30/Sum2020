@@ -10,8 +10,8 @@
 
 #include "globe.h"
 
-#define M (25 * 3)
-#define N (12 * 3)
+#define M 50
+#define N 36
 
 static VEC Geom[N][M];
 static INT CenterX, CenterY;
@@ -64,41 +64,14 @@ VOID GlobeDraw( HDC hDC )
   for (i = 0; i < N; i++)
     for (j = 0; j < M; j++)
     {
-      VEC v = VecRotateZ(Geom[i][j], 30 * t),
-          v1 = VecRotateX(Geom[i][j], 30 * t); 
-        pnts[i][j].x = CenterX + (INT)v1.X, 
-        pnts[i][j].y = CenterY - (INT)v1.Y;
+      VEC
+        v = VecRotateZ(Geom[i][j], 34 * t),
+        v1 = VecRotateX(v, 34 * t);
+
+      pnts[i][j].x = CenterX + (INT)v1.X, 
+      pnts[i][j].y = CenterY - (INT)v1.Y;
     }
-    /*points*/
-  /*
-    for (i = 0; i < N; i++)
-      for (j = 0; j < M; j++)
-        Ellipse(hDC, pnts[i][j].x - s, pnts[i][j].y - s, pnts[i][j].x + s, pnts[i][j].y + s);
-    */
-    /*horizontal lines*/
-  /*
-    SelectObject(hDC, GetStockObject(BLACK_PEN));
-    SelectObject(hDC, GetStockObject(NULL_BRUSH));
-    SetDCBrushColor(hDC, RGB(55, 55, 55));
-    for (i = 0; i < N; i++)
-    {
-      MoveToEx(hDC, pnts[i][0].x, pnts[i][0].y, NULL);
-      for (j = 0; j < M; j++)
-        LineTo(hDC, pnts[i][j].x, pnts[i][j].y);
-    }
-    */
-    /*vertical lines*/
-    /*
-    SelectObject(hDC, GetStockObject(BLACK_PEN));
-    SelectObject(hDC, GetStockObject(NULL_BRUSH));
-    SetDCBrushColor(hDC, RGB(55, 55, 55));
-    for (j = 0; j < M; j++)
-    {
-      MoveToEx(hDC, pnts[0][j].x, pnts[0][j].y, NULL);
-      for (i = 0; i < N; i++)
-        LineTo(hDC, pnts[i][j].x, pnts[i][j].y);
-    }
-    */
+
   SelectObject(hDC, GetStockObject(BLACK_PEN));
   SelectObject(hDC, GetStockObject(DC_BRUSH));
   srand(10);
@@ -117,5 +90,5 @@ VOID GlobeDraw( HDC hDC )
            (p[2].x - p[3].x) * (p[2].y + p[3].y) +
            (p[3].x - p[0].x) * (p[3].y + p[0].y) <= 0)
           Polygon(hDC, p, 4); 
-      }
+      } 
 }

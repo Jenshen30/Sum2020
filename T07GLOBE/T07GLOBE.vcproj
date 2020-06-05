@@ -186,6 +186,10 @@
 				RelativePath=".\T07GLOBE.C"
 				>
 			</File>
+			<File
+				RelativePath=".\TIMER.C"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

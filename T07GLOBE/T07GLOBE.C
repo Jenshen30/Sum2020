@@ -2,6 +2,7 @@
 * PROGRAMMER: EK6
 * DATE: 04.06.2020
 */
+#include <stdio.h>
 #include <windows.h>
 
 #include "globe.h"
@@ -46,8 +47,15 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, CHAR *CmdLine,
     NULL, NULL, hInstance, NULL);
 
   /* Message loop */
-  while (GetMessage(&msg, NULL, 0, 0))
-    DispatchMessage(&msg);
+  while (TRUE)
+    if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+    {
+      if (msg.message == WM_QUIT)
+        break;
+      DispatchMessage(&msg);
+    }
+    else
+      SendMessage(hWnd, WM_TIMER, 47, 0);
 
   return 30;
 } /* End of 'WinMain' function */
@@ -96,10 +104,12 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
 {
   HDC hDC;
   PAINTSTRUCT ps;
+  RECT rc;
   static BITMAP bm;
   static HDC hMemDCFrame;
   static HBITMAP hBmFrame;
   static INT w, h;
+  static CHAR Buf[100];
 
   switch (Msg)
   {
@@ -108,7 +118,8 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
       GetSystemMetrics(SM_CYMAXTRACK) + GetSystemMetrics(SM_CYCAPTION) + 2 * GetSystemMetrics(SM_CYBORDER);
     return 0;
   case WM_CREATE:
-    SetTimer(hWnd, 30, 12, NULL);
+    GLB_TimerInit();
+    SetTimer(hWnd, 30, 1, NULL);
     hDC = GetDC(hWnd);
     hMemDCFrame = CreateCompatibleDC(hDC);
     ReleaseDC(hWnd, hDC);
@@ -136,8 +147,16 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
   case WM_KEYDOWN:
     if (wParam == VK_ESCAPE)
       SendMessage(hWnd, WM_CLOSE, 0, 0);
+    else if (wParam == 'P')
+      GLB_IsPause = !GLB_IsPause; 
     return 0;
   case WM_TIMER:
+    rc.left = 0;
+    rc.bottom = h; 
+    rc.right = w;
+    rc.top = 0;
+
+    GLB_TimerResponse();
     InvalidateRect(hWnd, NULL, FALSE);
     /* Clear Background */
     SelectObject(hMemDCFrame, GetStockObject(WHITE_BRUSH));
@@ -145,6 +164,8 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
     Rectangle(hMemDCFrame, 0, 0, w + 1, h + 1);
 
     GlobeDraw(hMemDCFrame);
+    DrawText(hMemDCFrame, Buf, sprintf(Buf, "FPS: %.5f", GLB_FPS), &rc, DT_CENTER | DT_TOP);
+
 
     InvalidateRect(hWnd, NULL, FALSE);
     
