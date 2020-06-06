@@ -200,6 +200,10 @@
 				RelativePath=".\GLOBE.H"
 				>
 			</File>
+			<File
+				RelativePath=".\MTH.H"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

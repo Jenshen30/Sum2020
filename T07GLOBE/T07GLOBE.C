@@ -6,6 +6,7 @@
 #include <windows.h>
 
 #include "globe.h"
+#include "mth.h"
 
 /* Window class name */
 #define WND_CLASS_NAME "My Window Class Name"
@@ -163,6 +164,7 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
     SelectObject(hMemDCFrame, GetStockObject(NULL_PEN));
     Rectangle(hMemDCFrame, 0, 0, w + 1, h + 1);
 
+    m = MatrIdentity();
     GlobeDraw(hMemDCFrame);
     DrawText(hMemDCFrame, Buf, sprintf(Buf, "FPS: %.5f", GLB_FPS), &rc, DT_CENTER | DT_TOP);
 

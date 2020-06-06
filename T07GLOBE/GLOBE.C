@@ -10,6 +10,8 @@
 
 #include "globe.h"
 
+#include "mth.h"
+
 #define M 50
 #define N 36
 
@@ -84,7 +86,7 @@ VOID GlobeDraw( HDC hDC )
         p[1] = pnts[i][j + 1];
         p[2] = pnts[i + 1][j + 1];
         p[3] = pnts[i + 1][j];
-        SetDCBrushColor(hDC, RGB(rand() % 256, 20, rand() % 256, rand() % 256) );
+        SetDCBrushColor(hDC, RGB(rand() % 256, 20, rand() % 256) );
         if ((p[0].x - p[1].x) * (p[0].y + p[1].y) + 
            (p[1].x - p[2].x) * (p[1].y + p[2].y) +
            (p[2].x - p[3].x) * (p[2].y + p[3].y) +

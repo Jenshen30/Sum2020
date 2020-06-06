@@ -3,17 +3,10 @@
 * DATE: 04.06.2020
 */
 
+#include "mth.h"
 #include <windows.h>
 
 #define PI 3.14159265358979323846
-
-typedef double DBL;
-typedef float FLT;
-
-typedef struct tagVEC 
-{
-  DBL X, Y, Z; 
-} VEC;
 
 extern DBL GLB_Time;       
 extern DBL GLB_DeltaTime;  

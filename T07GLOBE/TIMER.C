@@ -1,12 +1,12 @@
-/* FILE NAME: GLOBE.C
+/* FILE NAME: TIMER.C
 * PROGRAMMER: EK6
 * DATE: 04.06.2020
 */
 
 #include <time.h>
-#include <time.h>
 
-#include "GLOBE.H"
+#include "mth.h"
+#include "globe.h"
 
 DBL GLB_Time;       
 DBL GLB_DeltaTime;  
