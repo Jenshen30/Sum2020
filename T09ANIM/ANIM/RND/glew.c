@@ -56,7 +56,7 @@
 #  include <GL/glxew.h>
 #endif
 
-#include <stddef.h>  /* For size_t */
+#include <stddef.h>  /* Fo size_t */
 
 #if defined(GLEW_EGL)
 #elif defined(GLEW_REGAL)

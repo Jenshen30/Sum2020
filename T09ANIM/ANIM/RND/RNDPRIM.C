@@ -106,6 +106,7 @@ VOID EK6_RndPrimCreateSphere( ek6PRIM *Pr, VEC C, DBL R, INT SplitW, INT SplitH 
       Pr->I[k++] = (i + 1) * SplitW + j + 1;
       Pr->I[k++] = (i + 1) * SplitW + j;
       Pr->I[k++] = i * SplitW + j + 1;
+
     }
 }/*End of 'EK6_RndPrimCreateSphere' fn*/
 

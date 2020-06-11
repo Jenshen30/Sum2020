@@ -1163,6 +1163,7 @@ GLAPI void GLAPIENTRY glVertex2i (GLint x, GLint y);
 GLAPI void GLAPIENTRY glVertex2iv (const GLint *v);
 GLAPI void GLAPIENTRY glVertex2s (GLshort x, GLshort y);
 GLAPI void GLAPIENTRY glVertex2sv (const GLshort *v);
+
 GLAPI void GLAPIENTRY glVertex3d (GLdouble x, GLdouble y, GLdouble z);
 GLAPI void GLAPIENTRY glVertex3dv (const GLdouble *v);
 GLAPI void GLAPIENTRY glVertex3f (GLfloat x, GLfloat y, GLfloat z);

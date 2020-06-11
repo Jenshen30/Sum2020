@@ -164,6 +164,7 @@ VOID EK6_RndCamSet( VEC Loc, VEC At, VEC Up )
   EK6_RndMatrVP = MatrMulMatr(EK6_RndMatrView, EK6_RndMatrProj);
 }/* End of 'EK6_RndCamSet' fn */
 
+
 VOID EK6_RndEnd( VOID )
 {
   glFinish();

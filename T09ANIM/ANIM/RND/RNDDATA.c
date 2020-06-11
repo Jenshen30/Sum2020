@@ -11,7 +11,6 @@ HDC EK6_hRndDC;/* Work window memory device context  */
 HGLRC EK6_hRndGLRC; /* OpenGL rendering context*/
 INT EK6_RndFrameW, EK6_RndFrameH; /* Work window size */
 
-
 DBL
   EK6_RndProjSize,  /* Project plane fit square */
   EK6_RndProjDist,  /* Distance to project plane from viewer (near) */
