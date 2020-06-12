@@ -85,6 +85,7 @@ VOID EK6_AnimAddUnit( ek6UNIT *Uni )
  * RETURNS:
  *   (VOID) None.
 */
+
 VOID EK6_AnimInit( HWND hWnd )
 {
   memset(&EK6_Anim, 0, sizeof(ek6ANIM));

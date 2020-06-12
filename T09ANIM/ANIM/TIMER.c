@@ -17,6 +17,7 @@ static UINT64
     TimePerSec,   /* Timer resolution */
     FrameCounter; /* Frames counter */
 
+
 /*Timer initialization function.
 * ARGUMENTS: None.
 * RETURNS None

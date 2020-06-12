@@ -39,6 +39,7 @@ typedef struct tagek6ANIM
 
 } ek6ANIM;
 
+
 /*Base unit fields*/
 #define EK6_BASE_UNIT_FIELDS                      \
   VOID (*Init)( ek6UNIT *Uni, ek6ANIM *Ani );     \

@@ -67,6 +67,7 @@ VOID EK6_AnimInputInit( VOID )
 {
   EK6_AnimKeyboardInit();
   EK6_AnimMouseInit();
+
 }
 VOID EK6_AnimInputResponse( VOID )
 {

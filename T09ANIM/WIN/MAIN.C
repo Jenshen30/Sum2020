@@ -67,9 +67,9 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, CHAR *CmdLine,
 
   ShowWindow(hWnd, CmdShow);
   EK6_AnimAddUnit(EK6_UnitCreateBall());
-
+  EK6_AnimAddUnit(EK6_UnitCreateWolf());
   ///for (i = 0; i < 2; i++)
-    EK6_AnimAddUnit(EK6_UnitCreateBall());
+    ///EK6_AnimAddUnit(EK6_UnitCreateBall());
   EK6_AnimAddUnit(EK6_UnitCreateControl());
 
   /* Message loop */
@@ -101,7 +101,7 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
   case WM_CREATE:
     EK6_AnimInit(hWnd);
     //EK6_RndPrimCreateSphere(&Pr, VecSet(0.2, 0.5, 0.2), 1.3, 50, 50);
-    EK6_RndPrimLoad(&wf, "WOLF.obj", 0.01, -0.5);
+    ///EK6_RndPrimLoad(&wf, "WOLF.obj", 0.01, -0.5);
     //EK6_RndPrimLoad(&Lm, "LEGO_Man.obj", 0.1, 2);//
     SetTimer(hWnd, 30, 0, NULL);
     return 0;
@@ -123,11 +123,11 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
     /*painting stage*/
      EK6_AnimRender();
      //EK6_RndPrimDraw(&Pr, MatrRotateY(clock() / 200.0));
-     EK6_RndPrimDraw(&wf, MatrRotateY(- sin(EK6_Anim.GlobalTime) / 200.0));
+    /// EK6_RndPrimDraw(&wf, MatrRotateY(-EK6_Anim.GlobalTime / 200.0));
      //EK6_RndPrimDraw(&Lm, MatrRotateX(clock() / 300.0));//
      //EK6_RndEnd();
      ///InvalidateRect(hWnd, NULL, FALSE);
-     hDC = GetDC(hWnd);
+     //hDC = GetDC(hWnd);
      EK6_AnimCopyFrame();
      /*InvalidateRect(hWnd, NULL, FALSE);*/
      return 0;
@@ -140,7 +140,7 @@ LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam )
     return 0;
   case WM_DESTROY:
     //EK6_RndPrimFree(&Pr);
-    EK6_RndPrimFree(&wf);
+    ///EK6_RndPrimFree(&wf);
     //EK6_RndPrimFree(&Lm);
     //EK6_RndClose();
 

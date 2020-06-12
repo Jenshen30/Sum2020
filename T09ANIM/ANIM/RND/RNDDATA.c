@@ -10,6 +10,7 @@ HWND EK6_hRndWnd;/* Work window handle */
 HDC EK6_hRndDC;/* Work window memory device context  */
 HGLRC EK6_hRndGLRC; /* OpenGL rendering context*/
 INT EK6_RndFrameW, EK6_RndFrameH; /* Work window size */
+INT EK6_RndProgId;
 
 DBL
   EK6_RndProjSize,  /* Project plane fit square */

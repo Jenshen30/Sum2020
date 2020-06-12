@@ -11,6 +11,8 @@
 
 ek6UNIT * EK6_UnitCreateControl( VOID ); 
 ek6UNIT * EK6_UnitCreateBall( VOID );
+ek6UNIT * EK6_UnitCreateWolf( VOID );
+
 
 #endif /* __UNITS_H_ */
 /*END OF 'UNITS.H' file*/

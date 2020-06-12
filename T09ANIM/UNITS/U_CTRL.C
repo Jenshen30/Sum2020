@@ -37,6 +37,10 @@ static VOID EK6_UnitResponse( ek6UNIT_CTRL *Uni, ek6ANIM *Ani )
 
   if (Ani->KeysClick['P'])
     Ani->IsPause = !Ani->IsPause;
+  if (Ani->KeysClick['W'])
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  if (Ani->KeysClick['S'])
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
   //if (Ani->KeysClick[VK_RETURN] && Ani->Keys[VK_MENU])
     //EK6_FlipFullScreen();
   if (Ani->KeysClick[VK_ESCAPE])
@@ -54,10 +58,11 @@ static VOID EK6_UnitResponse( ek6UNIT_CTRL *Uni, ek6ANIM *Ani )
   MatrRotateY(-Uni->RotateAngle)));
   EK6_RndCamSet(L, VecSet(0, 0, 0), VecSet(0, 1, 0));
 
-  SetTextColor(Ani->hDC, RGB(0, 255, 255));
+  SetTextColor(Ani->hDC, RGB(0, 255, 0));
   SetBkMode(Ani->hDC, TRANSPARENT);
   TextOut(Ani->hDC, 0, 0, Buf, sprintf(Buf, "FPS: %.3f", Ani->FPS));
 } /* End of 'EK6_UnitResponse' function */
+
 
 static VOID EK6_UnitRender( VOID )//ek6UNIT_CONTROL *Uni, ek6ANIM *Ani )
 {

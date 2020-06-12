@@ -23,24 +23,28 @@
 typedef float FLT;
 typedef double DBL;
 
+
 /* Space vector/point representation type */
 typedef struct tagVEC
 {
   FLT X, Y, Z; /* Vector coordinates */
 } VEC;
 
+typedef struct tagVEC2
+{
+  FLT X, Y; /* Vector coordinates */
+} VEC2;
+
+typedef struct tagVEC4
+{
+  FLT X, Y, Z, W; /* Vector coordinates */
+} VEC4;
+
+
 typedef struct tagMATR
 {
   FLT A[4][4];/*Matrix elements*/
 } MATR;         
-
-/* Add two vectors function.
- * ARGUMENTS:
- *   - vectors to be add:
- *       VEC V1, V2;
- * RETURNS:
- *   (VEC) result vector.
- */
 
 /* VEC creation function.
  * ARGUMENTS:
@@ -57,10 +61,46 @@ __inline VEC VecSet( FLT X, FLT Y, FLT Z )
 } /* End of 'VecSet' function */
 
 
+/* Add two vectors function.
+ * ARGUMENTS:
+ *   - vectors to be add:
+ *       VEC V1, V2;
+ * RETURNS:
+ *   (VEC) result vector.
+ */
 __inline VEC VecAddVec( VEC V1, VEC V2 )
 {
   return VecSet(V1.X + V2.X, V1.Y + V2.Y, V1.Z + V2.Z);
 } /* End of 'VecAddVec' function */
+/* VEC creation function.
+ * ARGUMENTS:
+ *   - coordinates of vector:
+ *       FLT X, FLT Y;
+ * RETURNS:
+ *   (VEC) result vector.
+ */
+__inline VEC2 Vec2Set( FLT X, FLT Y)
+{
+  VEC2 v = {X, Y};
+
+  return v;
+} /* End of 'Vec2Set' function */
+
+
+
+/* VEC creation function.
+ * ARGUMENTS:
+ *   - coordinates of vector:
+ *       FLT X, FLT Y, FLT Z, FLT W;
+ * RETURNS:
+ *   (VEC) result vector.
+ */
+__inline VEC4 Vec4Set( FLT X, FLT Y, FLT Z, FLT W )
+{
+  VEC4 v = {X, Y, Z, W};
+
+  return v;
+} /* End of 'Vec4Set' function */
 
 
 /*  Subsract two vectors function.

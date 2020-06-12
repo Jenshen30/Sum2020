@@ -5,6 +5,8 @@
  *          Render system declaration module.
 */
 
+#include <time.h>
+
 #include "rnd.h"
 
 /*link libraryes*/
@@ -60,6 +62,8 @@ VOID EK6_RndInit( HWND hWnd )
 
   EK6_RndProjSet();
   EK6_RndCamSet(VecSet(-4, 1, 1), VecSet(1, 1, -1), VecSet(-1, 1, 1));
+
+  EK6_RndProgId = EK6_RndShdLoad("DEFAULT");
 }/* End of 'EK6_RndInit' fn*/
 
 
@@ -71,6 +75,7 @@ VOID EK6_RndInit( HWND hWnd )
 */
 VOID EK6_RndClose( VOID )
 {
+  EK6_RndShdDelete(EK6_RndProgId);
   wglMakeCurrent(NULL, NULL);
   wglDeleteContext(EK6_hRndGLRC);
   ReleaseDC(EK6_hRndWnd, EK6_hRndDC);  
@@ -118,6 +123,15 @@ VOID EK6_RndCopyFrame( VOID )
 */
 VOID EK6_RndStart( VOID )
 {
+  INT t = clock();
+  static INT old_time;
+
+  if (t - old_time > CLOCKS_PER_SEC)
+  {
+    EK6_RndShdDelete(EK6_RndProgId);
+    EK6_RndProgId = EK6_RndShdLoad("DEFAULT");
+    old_time = t;
+  }
 
   /* Clear Background */
   glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);

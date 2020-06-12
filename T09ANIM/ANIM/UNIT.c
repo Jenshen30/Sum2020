@@ -12,6 +12,7 @@
 *       ek6ANIM *Ani;
 * RETURNS: None.
 */
+
 static VOID EK6_UnitInit( ek6UNIT *Uni, ek6ANIM *Ani )
 {
 } /* End of 'EK6_UnitInit' function */

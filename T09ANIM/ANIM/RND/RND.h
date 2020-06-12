@@ -5,7 +5,6 @@
  *          Render system declaration module.
  */
 
-
 #ifndef __RND_H_
 #define __RND_H_
 
@@ -21,6 +20,8 @@ extern HWND EK6_hRndWnd;        /* Work window handle */
 extern HDC EK6_hRndDC;     /* Work window memory device context  */
 extern HGLRC EK6_hRndGLRC;
 extern INT EK6_RndFrameW, EK6_RndFrameH;/* Work window size */
+extern INT EK6_RndProgId;
+
 
 extern DBL
   EK6_RndProjSize,  /* Project plane fit square */
@@ -41,28 +42,39 @@ VOID EK6_RndProjSet( VOID );
 VOID EK6_RndCamSet( VEC Loc, VEC At, VEC Up );
 VOID EK6_RndEnd( VOID );
 
+VOID EK6_RndShdDelete( INT ProgId );
+INT EK6_RndShdLoad( CHAR *ShaderFileNamePrefix );
+
 typedef struct tagek6VERTEX
 {
   VEC P;  /* Vertex position */
+  VEC2 T; /*Vertex texture coordinates*/
+  VEC N; /*Vertex normal coordinates*/
+  VEC4 C; /*Vertex color */
 } ek6VERTEX;
 
 typedef struct tagek6PRIM
 {
-  ek6VERTEX *V; /* Vertex attributes array */
-  INT NumOfV;   /* Number of vertices */
-
-  INT *I;       /* Index array (for trimesh – by 3 ones) */
-  INT NumOfI;   /* Number of indices */
+  INT
+    VA, /*OpenGL vertex array value*/
+    VBuf, /*OpenGL vertex buffer value*/
+    IBuf, /*OpenGL index buffer value*/
+    NumOfElements;   /* Number of elements: number of vertices or indices */
 
   MATR Trans;   /* Additional transformation matrix */
 } ek6PRIM;
 
-BOOL EK6_RndPrimCreate( ek6PRIM *Pr, INT NoofV, INT NoofI );
+
+VOID EK6_RndPrimCreate( ek6PRIM *Pr, ek6VERTEX *V, INT NumOfV, INT *I, INT NumOfI );
 VOID EK6_RndPrimFree( ek6PRIM *Pr );
 VOID EK6_RndPrimDraw( ek6PRIM *Pr, MATR World );
 VOID EK6_RndPrimCreateSphere( ek6PRIM *Pr, VEC C, DBL R, INT SplitW, INT SplitH );
 BOOL EK6_RndPrimLoad( ek6PRIM *Pr, CHAR *FileName, FLT k, FLT delta );
 //VOID EK6_RndEnd( VOID );
+
+INT EK6_RndShdLoad( CHAR *ShaderFileNamePrefix );
+VOID EK6_RndShdDelete( INT ProgId );
+
 #endif /* __RND_H_ */
 
 /* END OF 'RND.H' FILE */
